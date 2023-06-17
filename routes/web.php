@@ -24,7 +24,8 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('add-to-cart',[App\Http\Controllers\Frontend\CartController::class, 'addProduct']);
-
+Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::class, 'deleteproduct']);
+Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updatecart']);
 Route::middleware(['auth'])->group(function () {
     Route::get('cart', [App\Http\Controllers\Frontend\CartController::class, 'viewcart']);
 });

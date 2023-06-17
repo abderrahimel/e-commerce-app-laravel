@@ -21,29 +21,37 @@
 <div class="container">
     <div class="cart shadow product_data">
         <div class="cart-body">
+            @php $total = 0;@endphp
             @foreach ($cartitems as $item)
-                <div class="row">
+                <div class="row product_data">
                     <div class="col-md-2">
                         <img src="{{ asset('assets/uploads/products/'.$item->products->image) }}" width="70px" heigh="70px" alt="Image here">
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-2 my-auto">
                         <h3>{{ $item->products->name }}</h3>
                     </div>
-                    <div class="col-md-3">
-                        <input type="hidden" class="prod_id">
+                    <div class="col-md-2 my-auto">
+                        <h6> Rs {{ $item->products->selling_price }}</h6>
+                    </div>
+                    <div class="col-md-3 my-auto">
+                        <input type="hidden" class="prod_id" value="{{ $item->prod_id }}">
                         <label for="Quantity">Quantity</label>
                         <div class="input-group text-center mb-3" style="width: 130px">
-                            <button class="input-group-text decrement-btn">-</button>
+                            <button class="input-group-text changeQuantity decrement-btn">-</button>
                             <input type="text" name="quantity" class="form-control qty-input text-center" value="{{ $item->prod_qty }}">
-                            <button class="input-group-text increment-btn">+</button>
+                            <button class="input-group-text changeQuantity increment-btn">+</button>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <h6>Remove</h6>
+                    <div class="col-md-2 my-auto">
+                        <button class="btn btn-danger delete-cart-item"><i class="fa fa-trash"></i> Remove</button>
                     </div>
                 </div>
+                @php $total += $item->products->selling_price   *  $item->prod_qty; @endphp
             @endforeach
-
+        </div>
+        <div class="card-footer">
+            <h6>Total price : Rs {{ $total }}</h6>
+            <div class="btn btn-outline-success float-end">Proceed to Checkout</div>
         </div>
     </div>
 </div>
