@@ -44,7 +44,11 @@
                         </div>
                         <div class="col-md-10">
                             <br/>
+                            @if ($products->qty > 0)
                             <button type="button" class="btn btn-primary me-3 float-start addToCartBtn" style="margin-left: 40px;">Add to Cart</button>
+                            @else
+                                <label class="badge bg-success">Out of stock</label>
+                            @endif
                             <button type="button" class="btn btn-success me-3 float-start" >Add to Wishlist</button>
                         </div>
                     </div>

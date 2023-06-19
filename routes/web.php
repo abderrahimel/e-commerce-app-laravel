@@ -28,6 +28,7 @@ Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::c
 Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updatecart']);
 Route::middleware(['auth'])->group(function () {
     Route::get('cart', [App\Http\Controllers\Frontend\CartController::class, 'viewcart']);
+    Route::get('checkout', [App\Http\Controllers\Frontend\CheckoutController::class, 'index']);
 });
 
 Route::middleware(['auth','isAdmin'])->group(function (){
