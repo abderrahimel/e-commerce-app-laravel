@@ -20,7 +20,8 @@
 
 <div class="container">
     <div class="cart shadow product_data">
-        <div class="cart-body">
+        @if ($cartitems->count()>0)
+          <div class="cart-body">
             @php $total = 0;@endphp
             @foreach ($cartitems as $item)
                 <div class="row product_data">
@@ -35,7 +36,7 @@
                     </div>
                     <div class="col-md-3 my-auto">
                         <input type="hidden" class="prod_id" value="{{ $item->prod_id }}">
-                        @if($item->products->qty > $item->prod_qty)
+                        @if($item->products->qty >= $item->prod_qty)
                             <label for="Quantity">Quantity</label>
                             <div class="input-group text-center mb-3" style="width: 130px">
                                 <button class="input-group-text changeQuantity decrement-btn">-</button>
@@ -52,11 +53,18 @@
                     </div>
                 </div>
             @endforeach
-        </div>
-        <div class="card-footer">
-            <h6>Total price : Rs {{ $total }}</h6>
-            <a href="{{ url('checkout') }}" class="btn btn-outline-success float-end">Proceed to Checkout</a>
-        </div>
+           </div>
+            <div class="card-footer">
+                <h6>Total price : Rs {{ $total }}</h6>
+                <a href="{{ url('checkout') }}" class="btn btn-outline-success float-end">Proceed to Checkout</a>
+            </div>  
+        @else
+          <div class="card-body text-center">
+               <h2>Your <i class="fa fa-shopping-cart"></i> Cart is empty</h2>
+               <a href="{{ url('category') }}" class="btn btn-outline-primary float-end">Continue Shopping</a>
+          </div>
+        @endif
+        
     </div>
 </div>
    

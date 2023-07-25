@@ -90,4 +90,8 @@ class ProductController extends Controller
         return redirect('products')->with('status', "Product Updated Successfully");
        
     }
+
+    public function claude(){
+       return view('admin.claudetwo.claude');
+    }
 }

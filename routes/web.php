@@ -29,7 +29,11 @@ Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class,
 Route::middleware(['auth'])->group(function () {
     Route::get('cart', [App\Http\Controllers\Frontend\CartController::class, 'viewcart']);
     Route::get('checkout', [App\Http\Controllers\Frontend\CheckoutController::class, 'index']);
+    Route::post('place-order', [App\Http\Controllers\Frontend\CheckoutController::class, 'placeorder']);
+    Route::get('my-orders', [App\Http\Controllers\Frontend\UserController::class, 'index']);
+    Route::get('view-order/{id}', [App\Http\Controllers\Frontend\UserController::class, 'view']);
 });
+
 
 Route::middleware(['auth','isAdmin'])->group(function (){
     Route::get('/dashboard', [App\Http\Controllers\Admin\FrontendController::class,'index']);
@@ -44,4 +48,5 @@ Route::middleware(['auth','isAdmin'])->group(function (){
     Route::get('add-products', [App\Http\Controllers\Admin\ProductController::class,'add']);
     Route::post('insert-product', [App\Http\Controllers\Admin\ProductController::class,'insert']);
     Route::get('edit-product/{id}',[App\Http\Controllers\Admin\ProductController::class,'edit']);
+    Route::get('claude',[App\Http\Controllers\Admin\ProductController::class,'claude']);
 });
